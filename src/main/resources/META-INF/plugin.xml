@@ -2,7 +2,7 @@
     <id>uk.co.hadoopathome.intellij.cicd</id>
     <name>CICD Sandbox</name>
     <description>A CICD sandbox</description>
-    <version>0.6.0</version>
+    <version>0.7.0</version>
     <vendor email="ben@bwinsights.co.uk" url="http://www.github.com/benwatson528">Ben Watson</vendor>
 
     <depends>com.intellij.modules.lang</depends>
