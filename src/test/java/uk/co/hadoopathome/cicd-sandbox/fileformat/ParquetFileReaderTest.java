@@ -22,7 +22,8 @@ public class ParquetFileReaderTest {
   @DisplayName("Assert that a schema can be extracted from a Parquet file")
   public void testGetSchema() throws IOException {
     File file = new File(getClass().getClassLoader().getResource(NESTED_PARQUET_FILE).getFile());
-    uk.co.hadoopathome.intellij.viewer.fileformat.Reader parquetReader = new uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader(file);
+    uk.co.hadoopathome.intellij.viewer.fileformat.Reader parquetReader =
+        new uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader(file);
     String schema = parquetReader.getSchema();
     assertTrue(schema.contains("\"type\" : [ \"int\", \"null\" ]"));
   }
@@ -31,7 +32,8 @@ public class ParquetFileReaderTest {
   @DisplayName("Assert that one record can be extracted from a Parquet file")
   public void testGetRecords() throws IOException {
     File file = new File(getClass().getClassLoader().getResource(NESTED_PARQUET_FILE).getFile());
-    uk.co.hadoopathome.intellij.viewer.fileformat.Reader parquetReader = new uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader(file);
+    uk.co.hadoopathome.intellij.viewer.fileformat.Reader parquetReader =
+        new uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader(file);
     List<String> records = parquetReader.getRecords(10);
     assertEquals(6, records.size());
     String firstRecord = records.get(0);
@@ -45,7 +47,8 @@ public class ParquetFileReaderTest {
   @DisplayName("Assert that all records can be extracted from a Parquet file")
   public void testGetAllRecords() throws IOException {
     File file = new File(getClass().getClassLoader().getResource(NESTED_PARQUET_FILE).getFile());
-    uk.co.hadoopathome.intellij.viewer.fileformat.Reader parquetReader = new uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader(file);
+    uk.co.hadoopathome.intellij.viewer.fileformat.Reader parquetReader =
+        new uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader(file);
     List<String> records = parquetReader.getRecords(99999);
     assertEquals(6, records.size());
     String firstRecord = records.get(0);
@@ -59,7 +62,8 @@ public class ParquetFileReaderTest {
   @DisplayName("Assert that a Parquet file with complex nesting is correctly parsed")
   public void testList() throws IOException {
     File file = new File(getClass().getClassLoader().getResource(LIST_PARQUET_FILE).getFile());
-    uk.co.hadoopathome.intellij.viewer.fileformat.Reader parquetReader = new uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader(file);
+    uk.co.hadoopathome.intellij.viewer.fileformat.Reader parquetReader =
+        new uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader(file);
     List<String> records = parquetReader.getRecords(10);
     assertEquals(1, records.size());
     String firstRecord = records.get(0);
@@ -70,7 +74,8 @@ public class ParquetFileReaderTest {
   @DisplayName("Assert that a Parquet file with an INT96 column can still be displayed")
   public void testInvalidFile() throws IOException {
     File file = new File(getClass().getClassLoader().getResource(INVALID_PARQUET_FILE).getFile());
-    uk.co.hadoopathome.intellij.viewer.fileformat.Reader parquetReader = new uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader(file);
+    uk.co.hadoopathome.intellij.viewer.fileformat.Reader parquetReader =
+        new uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader(file);
     List<String> records = parquetReader.getRecords(10);
     assertEquals(10, records.size());
     String firstRecord = records.get(0);

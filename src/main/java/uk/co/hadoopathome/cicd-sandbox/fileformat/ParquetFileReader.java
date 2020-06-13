@@ -22,7 +22,9 @@ public class ParquetFileReader implements uk.co.hadoopathome.intellij.viewer.fil
   @Override
   public String getSchema() throws IOException {
     ParquetReader<Object> pReader =
-        AvroParquetReader.builder(new uk.co.hadoopathome.intellij.viewer.fileformat.LocalInputFile(this.path)).build();
+        AvroParquetReader.builder(
+                new uk.co.hadoopathome.intellij.viewer.fileformat.LocalInputFile(this.path))
+            .build();
     GenericData.Record firstRecord = (GenericData.Record) pReader.read();
     if (firstRecord == null) {
       throw new IOException("Can't process empty Parquet file");
@@ -34,7 +36,9 @@ public class ParquetFileReader implements uk.co.hadoopathome.intellij.viewer.fil
   public List<String> getRecords(int numRecords) throws IOException, IllegalArgumentException {
     List<String> records = new ArrayList<>();
     try (ParquetReader<Object> parquetReader =
-        AvroParquetReader.builder(new uk.co.hadoopathome.intellij.viewer.fileformat.LocalInputFile(this.path)).build()) {
+        AvroParquetReader.builder(
+                new uk.co.hadoopathome.intellij.viewer.fileformat.LocalInputFile(this.path))
+            .build()) {
       GenericData.Record value;
       for (int i = 0; i < numRecords; i++) {
         value = (GenericData.Record) parquetReader.read();
