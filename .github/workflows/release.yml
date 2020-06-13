@@ -53,11 +53,11 @@ jobs:
           current-version: ${{ steps.vars.outputs.tag }}
           version-fragment: 'feature'
       - name: Do something with your bumped release version
-        run: echo "Updating version to "${{ steps.bump_version.outputs.next-version }}""
+        run: echo "Updating version to ${{ steps.bump_version.outputs.next-version }}"
       - name: Create local changes
         run: |
-          sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }} ./build.gradle'
-          sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }} ./src/main/resources/META-INF/plugin.xml'
+          sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }}' ./build.gradle
+          sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }}' ./src/main/resources/META-INF/plugin.xml
       - name: Commit files
         run: |
           git commit -m "Updating version" -a
