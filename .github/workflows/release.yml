@@ -50,14 +50,14 @@ jobs:
         id: bump_version
         uses: christian-draeger/increment-semantic-version@1.0.1
         with:
-          current-version: ${GITHUB_REF#refs/*/}
+          current-version: ${{ steps.vars.outputs.tag }}
           version-fragment: 'feature'
       - name: Do something with your bumped release version
         run: echo "Updating version to "${{ steps.bump_version.outputs.next-version }}""
       - name: Create local changes
         run: |
-          sed -i 's/${GITHUB_REF#refs/*/}/${{ steps.bump_version.outputs.next-version }} build.gradle'
-          sed -i 's/${GITHUB_REF#refs/*/}/${{ steps.bump_version.outputs.next-version }} plugin.xml'
+          sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }} build.gradle'
+          sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }} plugin.xml'
       - name: Commit files
         run: |
           git commit -m "Updating version" -a
