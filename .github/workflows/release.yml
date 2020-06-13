@@ -21,14 +21,11 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          body: |
-            Changes in this Release
+          body: "Changes in this Release
             - First Change
-            - Second Change
+            - Second Change"
           draft: false
           prerelease: false
-
-jobs:
   build:
     name: Upload Release Asset
     runs-on: ubuntu-latest
