@@ -1,4 +1,4 @@
-package uk.co.hadoopathome.intellij.viewer.fileformat;
+package uk.co.hadoopathome.cicdsandbox.fileformat;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package uk.co.hadoopathome.intellij.viewer.table;
+package uk.co.hadoopathome.cicdsandbox.table;
 
 import static org.junit.Assert.assertEquals;
 

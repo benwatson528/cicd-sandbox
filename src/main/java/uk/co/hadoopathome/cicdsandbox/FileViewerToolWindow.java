@@ -1,4 +1,4 @@
-package uk.co.hadoopathome.intellij.viewer;
+package uk.co.hadoopathome.cicdsandbox;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
@@ -35,10 +35,10 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rsyntaxtextarea.Theme;
 import org.fife.ui.rtextarea.RTextScrollPane;
-import uk.co.hadoopathome.intellij.viewer.fileformat.AvroFileReader;
-import uk.co.hadoopathome.intellij.viewer.fileformat.ParquetFileReader;
-import uk.co.hadoopathome.intellij.viewer.fileformat.Reader;
-import uk.co.hadoopathome.intellij.viewer.table.JTableHandler;
+import uk.co.hadoopathome.cicdsandbox.fileformat.AvroFileReader;
+import uk.co.hadoopathome.cicdsandbox.fileformat.ParquetFileReader;
+import uk.co.hadoopathome.cicdsandbox.fileformat.Reader;
+import uk.co.hadoopathome.cicdsandbox.table.JTableHandler;
 
 public class FileViewerToolWindow implements ToolWindowFactory {
   private static final Logger LOGGER = Logger.getInstance(FileViewerToolWindow.class);

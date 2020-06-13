@@ -1,4 +1,4 @@
-package uk.co.hadoopathome.intellij.viewer.table;
+package uk.co.hadoopathome.cicdsandbox.table;
 
 import com.github.wnameless.json.flattener.JsonFlattener;
 import com.google.gson.JsonElement;

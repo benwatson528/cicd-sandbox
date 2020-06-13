@@ -1,4 +1,4 @@
-package uk.co.hadoopathome.intellij.viewer.fileformat;
+package uk.co.hadoopathome.cicdsandbox.fileformat;
 
 import com.intellij.openapi.diagnostic.Logger;
 import java.io.File;
@@ -10,7 +10,7 @@ import org.apache.avro.generic.GenericData;
 import org.apache.parquet.avro.AvroParquetReader;
 import org.apache.parquet.hadoop.ParquetReader;
 
-public class ParquetFileReader implements uk.co.hadoopathome.intellij.viewer.fileformat.Reader {
+public class ParquetFileReader implements uk.co.hadoopathome.cicdsandbox.fileformat.Reader {
 
   private static final Logger LOGGER = Logger.getInstance(ParquetFileReader.class);
   private final Path path;
@@ -23,7 +23,7 @@ public class ParquetFileReader implements uk.co.hadoopathome.intellij.viewer.fil
   public String getSchema() throws IOException {
     ParquetReader<Object> pReader =
         AvroParquetReader.builder(
-                new uk.co.hadoopathome.intellij.viewer.fileformat.LocalInputFile(this.path))
+                new uk.co.hadoopathome.cicdsandbox.fileformat.LocalInputFile(this.path))
             .build();
     GenericData.Record firstRecord = (GenericData.Record) pReader.read();
     if (firstRecord == null) {
@@ -37,7 +37,7 @@ public class ParquetFileReader implements uk.co.hadoopathome.intellij.viewer.fil
     List<String> records = new ArrayList<>();
     try (ParquetReader<Object> parquetReader =
         AvroParquetReader.builder(
-                new uk.co.hadoopathome.intellij.viewer.fileformat.LocalInputFile(this.path))
+                new uk.co.hadoopathome.cicdsandbox.fileformat.LocalInputFile(this.path))
             .build()) {
       GenericData.Record value;
       for (int i = 0; i < numRecords; i++) {

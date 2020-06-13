@@ -1,4 +1,4 @@
-package uk.co.hadoopathome.intellij.viewer.table;
+package uk.co.hadoopathome.cicdsandbox.table;
 
 import java.awt.Component;
 import java.util.List;

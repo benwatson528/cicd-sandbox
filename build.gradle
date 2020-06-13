@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-group 'uk.co.hadoopathome.cicd-sandbox'
+group 'uk.co.hadoopathome.cicdsandbox'
 version '0.1.0'
 
 repositories {
