@@ -1,0 +1,70 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.21'
+    id 'maven-publish'
+}
+
+group 'uk.co.hadoopathome.intellij.viewer'
+version '1.1.5'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    //Avro dependencies
+    compile("org.apache.avro:avro:1.9.2") {
+        exclude group: 'org.slf4j'
+    }
+    compile("org.xerial.snappy:snappy-java:1.1.7.3")
+
+    //Parquet dependencies
+    //This is org.apache.parquet:parquet-avro-1.11.0 with added support for INT96
+    compile files("libs/parquet-avro-1.12.0-SNAPSHOT.jar")
+    compile("org.apache.parquet:parquet-column:1.11.0")
+    compile("org.apache.parquet:parquet-hadoop:1.11.0")
+    compile("org.apache.parquet:parquet-format-structures:1.11.0")
+    compile("org.apache.hadoop:hadoop-client:3.2.1")
+
+    //External dependencies
+    compile("com.google.code.gson:gson:2.8.6")
+    compile("com.fifesoft:rsyntaxtextarea:3.1.0")
+    compile("com.github.wnameless.json:json-flattener:0.8.1")
+
+    //Test dependencies
+    testCompile("org.junit.jupiter:junit-jupiter-engine:5.6.0")
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+patchPluginXml {
+    sinceBuild("171")
+    changeNotes """
+      Parquet files containing INT96 fields can now be processed, although the INT96 column will be displayed as bytes."""
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/benwatson528/intellij-avro-parquet-plugin")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            artifact file("build/distributions/intellij-avro-parquet-viewer-${project.version}.zip")
+        }
+    }
+}
