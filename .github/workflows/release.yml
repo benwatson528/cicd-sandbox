@@ -26,7 +26,6 @@ jobs:
             - Second Change"
           draft: false
           prerelease: false
-  build:
     name: Upload Release Asset
     runs-on: ubuntu-latest
     steps:
