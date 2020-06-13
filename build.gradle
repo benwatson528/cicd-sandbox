@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-group 'uk.co.hadoopathome.intellij.viewer'
+group 'uk.co.hadoopathome.cicd-sandbox'
 version '1.1.5'
 
 repositories {
@@ -55,7 +55,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/benwatson528/intellij-avro-parquet-plugin")
+            url = uri("https://maven.pkg.github.com/benwatson528/cicd-sandbox")
             credentials {
                 username = System.getenv("USERNAME")
                 password = System.getenv("TOKEN")
@@ -64,7 +64,7 @@ publishing {
     }
     publications {
         maven(MavenPublication) {
-            artifact file("build/distributions/intellij-avro-parquet-viewer-${project.version}.zip")
+            artifact file("build/distributions/cicd-sandbox-${project.version}.zip")
         }
     }
 }

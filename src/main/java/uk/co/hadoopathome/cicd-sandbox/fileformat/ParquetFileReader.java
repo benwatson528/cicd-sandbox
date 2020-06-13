@@ -10,7 +10,7 @@ import org.apache.avro.generic.GenericData;
 import org.apache.parquet.avro.AvroParquetReader;
 import org.apache.parquet.hadoop.ParquetReader;
 
-public class ParquetFileReader implements Reader {
+public class ParquetFileReader implements uk.co.hadoopathome.intellij.viewer.fileformat.Reader {
 
   private static final Logger LOGGER = Logger.getInstance(ParquetFileReader.class);
   private final Path path;
@@ -22,7 +22,7 @@ public class ParquetFileReader implements Reader {
   @Override
   public String getSchema() throws IOException {
     ParquetReader<Object> pReader =
-        AvroParquetReader.builder(new LocalInputFile(this.path)).build();
+        AvroParquetReader.builder(new uk.co.hadoopathome.intellij.viewer.fileformat.LocalInputFile(this.path)).build();
     GenericData.Record firstRecord = (GenericData.Record) pReader.read();
     if (firstRecord == null) {
       throw new IOException("Can't process empty Parquet file");
@@ -34,7 +34,7 @@ public class ParquetFileReader implements Reader {
   public List<String> getRecords(int numRecords) throws IOException, IllegalArgumentException {
     List<String> records = new ArrayList<>();
     try (ParquetReader<Object> parquetReader =
-        AvroParquetReader.builder(new LocalInputFile(this.path)).build()) {
+        AvroParquetReader.builder(new uk.co.hadoopathome.intellij.viewer.fileformat.LocalInputFile(this.path)).build()) {
       GenericData.Record value;
       for (int i = 0; i < numRecords; i++) {
         value = (GenericData.Record) parquetReader.read();
