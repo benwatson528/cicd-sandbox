@@ -12,6 +12,7 @@ To release an update of the plugin:
     ```
    git tag -a vx.y.z -m "Create release tag vx.y.z"
    git push origin --tags
+   ```
 5. The "Create Release" GitHub Action will automatically run and do the following:
 
    - Create a Release in GitHub,

@@ -7,7 +7,7 @@ on:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
-  build:
+  create_release:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
@@ -31,7 +31,12 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - name: Upload Release Asset
+
+  upload_package:
+    name: Upload Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish to Release Assets
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
@@ -46,24 +51,28 @@ jobs:
         env:
           USERNAME: ${{ github.actor }}
           PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-      - name: Bump release version
+
+  increment_version:
+    name: Increment release version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Increment release version
         id: bump_version
         uses: christian-draeger/increment-semantic-version@1.0.1
         with:
           current-version: ${{ steps.vars.outputs.tag }}
           version-fragment: 'feature'
-      - name: Do something with your bumped release version
-        run: echo "Updating version to ${{ steps.bump_version.outputs.next-version }}"
-      - name: Create local changes
+      - name: Apply incremented version in repo
         run: |
+          echo "Updating version to ${{ steps.bump_version.outputs.next-version }}"
           sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }}/g' ./build.gradle
           sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }}/g' ./src/main/resources/META-INF/plugin.xml
-      - name: Commit files
+      - name: Commit updated repo files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -m "Updating version" -a
-      - name: Push updated version
+      - name: Push updated repo files
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
