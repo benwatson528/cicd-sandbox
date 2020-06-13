@@ -60,6 +60,8 @@ jobs:
           sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }}/g' ./src/main/resources/META-INF/plugin.xml
       - name: Commit files
         run: |
+          git config --global user.email "benwatson528@gmail.com"
+          git config --global user.name "Ben Watson"
           git commit -m "Updating version" -a
       - name: Push updated version
         uses: ad-m/github-push-action@master
