@@ -23,6 +23,7 @@ jobs:
         run: ./gradlew buildPlugin
 
       - name: Create GitHub Release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -57,7 +58,7 @@ jobs:
 
       - name: Update version in project files
         run: |
-          echo "Updating version to ${{ steps.bump_version.outputs.next-version }}"
+          echo "Updating version to ${{ steps.increment_version.outputs.next-version }}"
           sed -i 's/${{ steps.trim_tag.outputs.tag }}/${{ steps.increment_version.outputs.next-version }}/g' ./gradle.properties
           sed -i 's/${{ steps.trim_tag.outputs.tag }}/${{ steps.increment_version.outputs.next-version }}/g' ./src/main/resources/META-INF/plugin.xml
 
