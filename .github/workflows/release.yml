@@ -75,7 +75,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Rollback Release
-         if: failure() && steps.create_release.outputs.id != ""
+         if: failure() && steps.create_release.outputs.id != ''
          uses: author/action-rollback@stable
          with:
            id: ${{ steps.create_release.id }}
