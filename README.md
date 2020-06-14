@@ -3,7 +3,7 @@
 
 ## Release Process
 
-To release an update of the plugin:
+To release a new version of the plugin:
 
 1. Create a `release/x.y.z` branch.
 2. Update the `changeNotes` in `build.gradle`.
@@ -17,6 +17,6 @@ To release an update of the plugin:
 
    - Create a Release in GitHub,
    - Build and upload the plugin zip to both the GitHub Release and GitHub Packages,
-   - Increment the version of the project and commit the incremented version to `build.gradle` and `plugin.xml`
+   - Increment the version of the project and commit the incremented version to `gradle.properties` and `plugin.xml`
 
 The new plugin zip must still be manually uploaded to the IntelliJ marketplace.
