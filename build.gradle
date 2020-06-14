@@ -4,9 +4,6 @@ plugins {
     id 'maven-publish'
 }
 
-group 'uk.co.hadoopathome.cicdsandbox'
-version '0.9.0'
-
 repositories {
     mavenCentral()
 }
