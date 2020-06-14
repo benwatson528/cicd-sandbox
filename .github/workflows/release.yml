@@ -60,7 +60,7 @@ jobs:
       - name: Update version in project files
         run: |
           echo "Updating version to ${{ steps.bump_version.outputs.next-version }}"
-          sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }}/g' ./build.gradle
+          sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }}/g' ./gradle.properties
           sed -i 's/${{ steps.vars.outputs.tag }}/${{ steps.bump_version.outputs.next-version }}/g' ./src/main/resources/META-INF/plugin.xml
 
       - name: Commit modified files
