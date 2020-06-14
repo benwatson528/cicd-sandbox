@@ -49,6 +49,7 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Increment release version
+        id: increment_version
         uses: christian-draeger/increment-semantic-version@1.0.1
         with:
           current-version: ${{ steps.trim_tag.outputs.tag }}
@@ -57,8 +58,8 @@ jobs:
       - name: Update version in project files
         run: |
           echo "Updating version to ${{ steps.bump_version.outputs.next-version }}"
-          sed -i 's/${{ steps.trim_tag.outputs.tag }}/${{ steps.bump_version.outputs.next-version }}/g' ./gradle.properties
-          sed -i 's/${{ steps.trim_tag.outputs.tag }}/${{ steps.bump_version.outputs.next-version }}/g' ./src/main/resources/META-INF/plugin.xml
+          sed -i 's/${{ steps.trim_tag.outputs.tag }}/${{ steps.increment_version.outputs.next-version }}/g' ./gradle.properties
+          sed -i 's/${{ steps.trim_tag.outputs.tag }}/${{ steps.increment_version.outputs.next-version }}/g' ./src/main/resources/META-INF/plugin.xml
 
       - name: Commit modified files
         run: |
